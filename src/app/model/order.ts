@@ -1,4 +1,5 @@
 export class Order {
+  [param: string]: any;
   id: number = 0;
   customerID: number = 0;
   productID: number = 0;

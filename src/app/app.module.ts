@@ -11,6 +11,9 @@ import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { InfoCardComponent } from './common/info-card/info-card.component';
 import { CustomersComponent } from './page/customers/customers.component';
 import { EditCustomerComponent } from './page/edit-customer/edit-customer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { OrdersComponent } from './page/orders/orders.component';
+import { EditOrderComponent } from './page/edit-order/edit-order.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { EditCustomerComponent } from './page/edit-customer/edit-customer.compon
     DashboardComponent,
     InfoCardComponent,
     CustomersComponent,
-    EditCustomerComponent
+    EditCustomerComponent,
+    OrdersComponent,
+    EditOrderComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +33,7 @@ import { EditCustomerComponent } from './page/edit-customer/edit-customer.compon
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

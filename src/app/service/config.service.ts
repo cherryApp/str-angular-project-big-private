@@ -43,5 +43,32 @@ export class ConfigService {
     },
   ];
 
+  orderTableColumns: ITableCol[] = [
+    {
+      key: 'id',
+      title: '#',
+    },
+    {
+      key: 'customerID',
+      title: 'Customer',
+      visible: true,
+    },
+    {
+      key: 'productID',
+      title: 'Product',
+      visible: true,
+    },
+    {
+      key: 'amount',
+      title: 'Amount',
+      visible: true,
+    },
+    {
+      key: 'status',
+      title: 'Status',
+      visible: true,
+    },
+  ];
+
   constructor() { }
 }

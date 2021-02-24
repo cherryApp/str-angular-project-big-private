@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title ">Orders</h4>
+        <p class="card-category">The list of orders of the shop.</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th *ngFor="let col of cols">
+                {{ col.title }}
+              </th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders$ | async">
+                <td *ngFor="let col of cols">
+                  {{ order[col.key] }}
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <button [routerLink]="[order.id]" class="btn btn-info">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
