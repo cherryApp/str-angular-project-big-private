@@ -14,6 +14,7 @@ import { EditCustomerComponent } from './page/edit-customer/edit-customer.compon
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { OrdersComponent } from './page/orders/orders.component';
 import { EditOrderComponent } from './page/edit-order/edit-order.component';
+import { SorterPipe } from './pipe/sorter.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EditOrderComponent } from './page/edit-order/edit-order.component';
     CustomersComponent,
     EditCustomerComponent,
     OrdersComponent,
-    EditOrderComponent
+    EditOrderComponent,
+    SorterPipe
   ],
   imports: [
     BrowserModule,

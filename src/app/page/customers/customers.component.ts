@@ -11,7 +11,9 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class CustomersComponent implements OnInit {
 
-  cols: ITableCol[] = this.config.customerTableColumns;
+  cols: ITableCol[] = this.config.customerTableColumns.filter(
+    c => c.visible
+  );
   customers$: Observable<Customer[]> = this.customerService.list$;
 
   constructor(

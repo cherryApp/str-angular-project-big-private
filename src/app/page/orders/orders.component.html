@@ -9,13 +9,20 @@
         <div class="table-responsive">
           <table class="table">
             <thead class=" text-primary">
-              <th *ngFor="let col of cols">
+              <th
+                class="sorter-header"
+                (click)="onSort(col.key)"
+                *ngFor="let col of cols">
+                <i *ngIf="sorterKey === col.key && sorterDirection === 1"
+                  class="fa fa-angle-up"></i>
+                <i *ngIf="sorterKey === col.key && sorterDirection === -1"
+                  class="fa fa-angle-down"></i>
                 {{ col.title }}
               </th>
               <th></th>
             </thead>
             <tbody>
-              <tr *ngFor="let order of orders$ | async">
+              <tr *ngFor="let order of orders$ | async | sorter:sorterKey:sorterDirection">
                 <td *ngFor="let col of cols">
                   {{ order[col.key] }}
                 </td>
@@ -24,8 +31,24 @@
                     <button [routerLink]="[order.id]" class="btn btn-info">
                       <i class="fa fa-eye"></i>
                     </button>
+                    <button (click)="onRemove(order)" class="btn btn-danger">
+                      <i class="fa fa-trash"></i>
+                    </button>
                   </div>
                 </td>
+              </tr>
+              <tr>
+                <td>
+                  {{ sumList.customers }}
+                </td>
+                <td>
+                  {{ sumList.orders }}
+                </td>
+                <td>
+                  {{ sumList.amount }}
+                </td>
+                <td></td>
+                <td></td>
               </tr>
             </tbody>
           </table>

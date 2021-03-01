@@ -1,12 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ConfigService } from './config.service';
 import { tap } from 'rxjs/operators';
-
-class BaseEntity {
-  id: number = 0;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +11,7 @@ export class BaseService<T extends { id: number }> {
 
   entityName: string = '';
   list$: BehaviorSubject<T[]> = new BehaviorSubject<T[]>([]);
+  error$: Subject<string> = new Subject();
 
   constructor(
     public config: ConfigService,
@@ -51,10 +48,26 @@ export class BaseService<T extends { id: number }> {
     );
   }
 
-  remove(entity: T): Observable<T> {
-    return this.http.delete<T>(
+  remove(entity: T): void {
+    this.http.delete<T>(
       `${this.config.apiUrl}/${this.entityName}/${entity.id}`,
+    ).pipe(
+      tap( e => this.getAll() )
+    ).subscribe(
+      () => {},
+      err => this.error$.next(err)
     );
+  }
+
+  like(key: string, value: string, limit: number = 10): Observable<T[]> {
+    key = `${key}_like`;
+    const query = `${this.config.apiUrl}/${this.entityName}?${key}=${value}&_limit=${limit}`;
+    return this.http.get<T[]>(query);
+  }
+
+  fullText(value: string): Observable<T[]> {
+    const query = `${this.config.apiUrl}/${this.entityName}?q=${value}`;
+    return this.http.get<T[]>(query);
   }
 
 }
