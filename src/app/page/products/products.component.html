@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title ">Products</h4>
+        <p class="card-category">The list of products of the shop.</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th
+                class="sorter-header"
+                (click)="onSort(col.key)"
+                *ngFor="let col of cols">
+                <i *ngIf="sorterKey === col.key && sorterDirection === 1"
+                  class="fa fa-sort-alpha-asc"></i>
+                <i *ngIf="sorterKey === col.key && sorterDirection === -1"
+                  class="fa fa-sort-alpha-desc"></i>
+                {{ col.title }}
+              </th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of list$ | async | sorter:sorterKey:sorterDirection">
+                <td *ngFor="let col of cols">
+                  <span *ngIf="!col.type else elseBlock">
+                    {{ product[col.key] }}
+                  </span>
+                  <ng-template #elseBlock>
+                    <input [checked]="product[col.key]" [type]="col.type" class="table-checkbox">
+                  </ng-template>
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <button [routerLink]="[product.id]" class="btn btn-info">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

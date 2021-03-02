@@ -5,6 +5,7 @@ import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { EditCustomerComponent } from './page/edit-customer/edit-customer.component';
 import { EditOrderComponent } from './page/edit-order/edit-order.component';
 import { OrdersComponent } from './page/orders/orders.component';
+import { ProductsComponent } from './page/products/products.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,14 @@ const routes: Routes = [
   },
   {
     path: 'orders/:id',
+    component: EditOrderComponent,
+  },
+  {
+    path: 'products',
+    component: ProductsComponent,
+  },
+  {
+    path: 'products/:id',
     component: EditOrderComponent,
   },
   {

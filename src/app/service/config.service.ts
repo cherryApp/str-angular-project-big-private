@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 export interface ITableCol {
   key: string;
   title: string;
+  type?: string;
   icon?: string;
   order?: number;
   pattern?: string;
@@ -67,6 +68,45 @@ export class ConfigService {
       key: 'status',
       title: 'Status',
       visible: true,
+    },
+  ];
+
+  productTableColumns: ITableCol[] = [
+    {
+      key: 'id',
+      title: '#',
+    },
+    {
+      key: 'name',
+      title: 'Name',
+      visible: true,
+    },
+    {
+      key: 'type',
+      title: 'Type',
+      visible: true,
+    },
+    {
+      key: 'catID',
+      title: 'Category',
+      visible: true,
+    },
+    {
+      key: 'price',
+      title: 'Price',
+      visible: true,
+    },
+    {
+      key: 'featured',
+      title: 'Feat.',
+      visible: true,
+      type: 'checkbox',
+    },
+    {
+      key: 'active',
+      title: 'Act.',
+      visible: true,
+      type: 'checkbox',
     },
   ];
 
